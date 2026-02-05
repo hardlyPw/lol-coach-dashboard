@@ -83,7 +83,7 @@ export default function MatchDetailPage() {
         const fetchGameData = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`http://localhost:8080/api/matches/${currentMatchId}`);
+                const response = await axios.get(`http://13.209.72.183/api/matches/${currentMatchId}`);
                 setMatchData(response.data);
 
                 // [추가] 초기 로딩 시 전체 기간으로 범위 설정 (Duration이 있으면)
@@ -107,7 +107,7 @@ export default function MatchDetailPage() {
         const fetchMetrics = async () => {
             const { s, t } = getPatternParams(selectedPattern);
             try {
-                const res = await axios.get(`http://localhost:8080/api/matches/${currentMatchId}/metrics`, {
+                const res = await axios.get(`http://13.209.72.183/api/matches/${currentMatchId}/metrics`, {
                     params: { sourceDa: s, targetDa: t }
                 });
                 // 시간 인덱스(10초 단위)를 실제 초(sec)로 변환해서 저장
@@ -149,7 +149,7 @@ export default function MatchDetailPage() {
             }
 
             try {
-                const res = await axios.get(`http://localhost:8080/api/matches/${currentMatchId}/analysis`, {
+                const res = await axios.get(`http://13.209.72.183/api/matches/${currentMatchId}/analysis`, {
                     params: {
                         start: startSec,
                         end: endSec,

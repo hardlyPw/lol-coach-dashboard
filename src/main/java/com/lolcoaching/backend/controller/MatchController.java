@@ -17,7 +17,7 @@ public class MatchController {
     // (Controller는 Service에게 시키고, Service가 Repository를 쓰는 구조입니다)
     private final MatchImportService matchImportService;
 
-    @GetMapping("/{id}") // 결과: GET http://localhost:8080/api/matches/3
+    @GetMapping("/{id}") // 결과: GET http://13.209.72.183/api/matches/3
     public ResponseEntity<MatchResponseDto> getMatchDetail(@PathVariable Long id) {
         try {
             // 서비스에 위임해서 DTO 받아오기
