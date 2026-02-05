@@ -38,3 +38,6 @@ out/
 
 ### pem files ###
 *.pem
+
+### application files ###
+src/main/resources/application.yml
