@@ -1,0 +1,64 @@
+﻿EventName,EventTime,KillerName,VictimName,Assisters,EventType
+GameStart,16,Unknown,Unknown,[],Unknown
+MinionsSpawning,65030,Unknown,Unknown,[],Unknown
+ChampionKill,237507,9,4,"[7, 10]",Unknown
+FirstBlood,237507,Unknown,Unknown,[],Unknown
+ChampionKill,239853,5,7,[],Unknown
+ChampionKill,372019,9,5,"[7, 10]",Unknown
+ChampionKill,374050,2,10,"[4, 5]",Unknown
+ChampionKill,376327,4,7,"[2, 5]",Unknown
+ChampionKill,381033,2,9,"[4, 5]",Unknown
+Multikill,381033,2,Unknown,[],Unknown
+ChampionKill,424756,2,6,"[1, 5]",Unknown
+HordeKill,504105,7,Unknown,"[9, 10]",Unknown
+ChampionKill,515370,9,2,"[7, 8, 10]",Unknown
+ChampionKill,517686,8,4,"[9, 10]",Unknown
+ChampionKill,518169,1,10,"[2, 4, 5]",Unknown
+ChampionKill,519539,1,9,"[2, 4, 5]",Unknown
+Multikill,519539,1,Unknown,[],Unknown
+ChampionKill,525794,8,5,"[7, 9, 10]",Unknown
+Multikill,525794,8,Unknown,[],Unknown
+ChampionKill,534938,7,1,[8],Unknown
+HordeKill,555986,7,Unknown,[],Unknown
+HordeKill,561421,7,Unknown,[],Unknown
+DragonKill,599225,2,Unknown,"[4, 5]",Unknown
+ChampionKill,748466,7,1,[6],Unknown
+ChampionKill,759661,2,9,"[4, 5]",Unknown
+ChampionKill,786126,7,3,[8],Unknown
+ChampionKill,835725,1,6,[2],Unknown
+ChampionKill,889101,4,6,"[2, 5]",Unknown
+ChampionKill,898217,1,7,[5],Unknown
+ChampionKill,899362,8,2,"[6, 9, 10]",Unknown
+ChampionKill,907522,9,5,"[7, 8, 10]",Unknown
+ChampionKill,908672,1,10,"[3, 4]",Unknown
+ChampionKill,911346,1,9,"[3, 4]",Unknown
+Multikill,911346,1,Unknown,[],Unknown
+ChampionKill,914994,8,4,[],Unknown
+ChampionKill,984691,9,2,"[7, 10]",Unknown
+ChampionKill,996757,7,3,"[9, 10]",Unknown
+ChampionKill,1011168,8,4,[7],Unknown
+ChampionKill,1018714,6,1,[],Unknown
+TurretKilled,1023288,6,Unknown,[],Unknown
+FirstBrick,1023288,6,Unknown,[],Unknown
+DragonKill,1043445,7,Unknown,[],Unknown
+TurretKilled,1045727,8,Unknown,[],Unknown
+ChampionKill,1101561,7,3,"[9, 10]",Unknown
+ChampionKill,1121238,1,6,"[2, 5]",Unknown
+HeraldKill,1127645,7,Unknown,[],Unknown
+TurretKilled,1133034,8,Unknown,[],Unknown
+TurretKilled,1144731,9,Unknown,[],Unknown
+ChampionKill,1151165,7,4,"[8, 9, 10]",Unknown
+ChampionKill,1153447,8,2,"[7, 9, 10]",Unknown
+ChampionKill,1163109,7,3,[8],Unknown
+ChampionKill,1164747,1,10,"[2, 3, 4, 5]",Unknown
+ChampionKill,1166188,1,9,[3],Unknown
+Multikill,1166188,1,Unknown,[],Unknown
+ChampionKill,1169899,8,5,"[7, 9, 10]",Unknown
+ChampionKill,1181161,6,1,"[7, 8, 9]",Unknown
+Ace,1181161,Unknown,Unknown,[],Unknown
+ChampionKill,1284017,8,2,"[7, 9, 10]",Unknown
+ChampionKill,1286663,7,4,"[8, 9, 10]",Unknown
+ChampionKill,1290654,10,5,"[6, 8, 9]",Unknown
+ChampionKill,1292718,7,3,"[8, 10]",Unknown
+Multikill,1292718,7,Unknown,[],Unknown
+TurretKilled,1305611,10,Unknown,"[6, 8, 9]",Unknown

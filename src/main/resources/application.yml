@@ -1,0 +1,24 @@
+spring:
+  # ... 기존 datasource 설정 ...
+  datasource:
+    url: jdbc:mysql://localhost:3306/lol_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # ... 기존 jpa 설정 ...
+  jpa:
+    hibernate:
+      ddl-auto: update # 개발 중에는 create, 데이터 유지하려면 update 권장
+    properties:
+      hibernate:
+        format_sql: true
+
+  # ★★★ [여기 추가] 파일 업로드 용량 설정 (100MB로 증량) ★★★
+  servlet:
+    multipart:
+      max-file-size: 100MB      # 파일 하나당 최대 크기
+      max-request-size: 100MB   # 요청 전체(파일 여러 개 포함) 최대 크기
+
+server:
+  port: 8080
