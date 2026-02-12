@@ -36,7 +36,7 @@ export default function UploadModal({ isOpen, onClose }: UploadModalProps) {
         setUploading(true);
         try {
             // 주소 확인 (MatchController의 주소와 일치해야 함)
-            const response = await axios.post("http://13.209.72.183/api/matches", formData, {
+            const response = await axios.post("http://3.34.82.181:8080/api/matches", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 

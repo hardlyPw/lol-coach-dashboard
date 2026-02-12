@@ -24,7 +24,7 @@ export default function MatchTabs({ currentMatchId, onUploadClick }: MatchTabPro
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const res = await axios.get('http://13.209.72.183/api/matches/list');
+                const res = await axios.get('http://3.34.82.181:8080/api/matches/list');
                 setMatches(res.data);
             } catch (err) {
                 console.error("매치 목록 로딩 실패:", err);

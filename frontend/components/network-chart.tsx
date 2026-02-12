@@ -70,7 +70,7 @@ export default function NetworkChart({ matchId, timeRange, events = [], selected
 
         const fetchData = async () => {
             try {
-                const res = await axios.get<NetworkMetricData[]>(`http://13.209.72.183/api/matches/${matchId}/metrics`, {
+                const res = await axios.get<NetworkMetricData[]>(`http://3.34.82.181:8080/api/matches/${matchId}/metrics`, {
                     params: {
                         sourceDa: currentPattern.source,
                         targetDa: currentPattern.target
