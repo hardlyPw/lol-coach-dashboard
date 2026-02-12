@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/matches") // ★ 1. 프론트엔드와 맞추기 위해 복수형(matches)으로 변경
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://3.34.82.181:3000", "http://localhost:3000"}, allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class MatchController {
 
     // ★ 2. Repository 대신 'Service'를 불러와야 합니다.
