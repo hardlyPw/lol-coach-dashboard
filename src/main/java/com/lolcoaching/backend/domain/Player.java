@@ -27,6 +27,8 @@ public class Player {
     // ★ setTeam(...)용 (이게 없어서 오류 났을 가능성이 큽니다)
     private String team;
 
+    private boolean isUserTeam;
+
     // ★ setGameMatch(...)용 (Repository 오류 해결을 위해 이름을 match -> gameMatch로 통일)
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

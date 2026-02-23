@@ -2,7 +2,7 @@ package com.lolcoaching.backend.controller;
 
 import com.lolcoaching.backend.Dto.MatchListDto;
 import com.lolcoaching.backend.repository.GameMatchRepository;
-import com.lolcoaching.backend.service.MatchImportService;
+import com.lolcoaching.backend.service.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,17 +17,18 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MatchUploadController {
 
-    private final MatchImportService matchImportService;
+    private final MatchService matchService;
     private final GameMatchRepository gameMatchRepository;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Long> uploadMatchData(
             @RequestPart("file") MultipartFile file,
-            @RequestParam("matchCode") String matchCode // ★ 여기 추가!
+            @RequestParam("matchCode") String matchCode,
+            @RequestParam("myTeam") String myTeam // ★ [추가] 프론트에서 보낸 BLUE/RED 정보를 받습니다.
     ) {
         try {
-            // 인자 2개를 넘기도록 수정
-            Long matchId = matchImportService.importMatch(file, matchCode);
+            // 이제 3개의 인수(file, matchCode, myTeam)를 모두 넘겨줍니다.
+            Long matchId = matchService.importMatch(file, matchCode, myTeam);
             return ResponseEntity.ok(matchId);
         } catch (Exception e) {
             e.printStackTrace();

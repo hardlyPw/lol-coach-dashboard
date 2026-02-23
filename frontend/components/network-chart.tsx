@@ -102,15 +102,17 @@ export default function NetworkChart({ matchId, timeRange, events = [], selected
 
     const getEventIcon = (eventName: string) => {
         const name = eventName.toLowerCase();
-        if (name.includes('champion')) return '⚔️';
+        if (name.includes('champion') || name.includes('blood')) return '⚔️';
         if (name.includes('horde')) return '🐛';
-        if (name.includes('herald')) return '👁️';
         if (name.includes('dragon')) return '🐉';
-        if (name.includes('atakhan')) return '👹';
+        if (name.includes('gamestart')) return '🏁';
+        if (name.includes('minionsspawning')) return '🐜';
         if (name.includes('baron')) return '👾';
+        if (name.includes('tower') || name.includes('turret')) return '🏰';
         if (name.includes('turret')) return '🏰';
         if (name.includes('inhib')) return '💎';
-        return '🚩';
+        if (name.includes('multi')) return '🔥';
+        return '🚩'
     };
 
     const getEventColor = (event: any) => {

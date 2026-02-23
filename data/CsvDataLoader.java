@@ -174,7 +174,7 @@ public class CsvDataLoader implements CommandLineRunner {
                     String[] cols = line.split(",");
                     if (cols.length < 2) continue;
 
-                    if (cols[0].contains("Kill") || cols[0].contains("Destroy") || cols[0].contains("FirstBlood")) {
+//                    if (cols[0].contains("Kill") || cols[0].contains("Destroy") || cols[0].contains("FirstBlood")) {
                         GameEvent event = new GameEvent();
                         event.setGameMatch(match);
                         event.setEventName(cols[0]);

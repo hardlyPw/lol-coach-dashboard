@@ -84,6 +84,12 @@ export default function MatchDetailPage() {
             setLoading(true);
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/matches/${currentMatchId}`);
+                console.log("=== [DEBUG] 백엔드 수신 데이터 ===");
+                console.log("전체 길이(ms):", response.data.duration);
+                console.log("이벤트 개수:", response.data.gameEvents?.length);
+                if (response.data.gameEvents?.length > 0) {
+                    console.log("첫 번째 이벤트 상세:", response.data.gameEvents[0]);
+                }
                 setMatchData(response.data);
 
                 // [추가] 초기 로딩 시 전체 기간으로 범위 설정 (Duration이 있으면)
@@ -133,7 +139,7 @@ export default function MatchDetailPage() {
             const { s, t } = getPatternParams(selectedPattern);
 
             // 타임라인 범위(ms)를 초(sec) 단위로 변환
-            const startSec = Math.floor(timeRange.start / 1000);
+            const startSec = Number((timeRange.start / 1000).toFixed(2));
 
             // end가 Infinity면 전체 시간 사용, 아니면 선택 범위 사용
             let endSec = 0;

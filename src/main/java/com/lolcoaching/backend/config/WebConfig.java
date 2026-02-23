@@ -1,4 +1,4 @@
-package com.lolcoaching.backend.config;
+package com.lolcoaching.backend.config; // 본인의 패키지 경로에 맞게 수정하세요
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -8,16 +8,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    // properties에 적은 'cors.allowed-origin' 값을 가져와서 변수에 담습니다.
     @Value("${cors.allowed-origin}")
     private String allowedOrigin;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+        // ★ [로그 추가] 서버 터미널에서 이 부분을 확인하세요!
+        System.out.println("===============================================");
+        System.out.println("CORS 설정 로드 중...");
+        System.out.println("현재 허용된 Origin: " + allowedOrigin);
+        System.out.println("===============================================");
+
         registry.addMapping("/**")
-                // 로컬 테스트용(localhost)과 실제 서버용(IP) 둘 다 허용해야 합니다.
                 .allowedOrigins(allowedOrigin)
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // OPTIONS 추가 권장
-                .allowedHeaders("*"); // 모든 헤더 허용
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }

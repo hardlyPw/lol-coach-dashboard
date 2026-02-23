@@ -15,11 +15,11 @@ public class GameMatch {
     private String matchCode;
 
     // ★ [추가] 아까 빨간 줄 떴던 부분 해결을 위해 꼭 필요합니다!
-    private Long duration;
-
-    // ==========================================
+    private Long duration;    // ==========================================
     // 양방향 관계에서 무한 루프를 방지하기 위한 설정
     // ==========================================
+
+    private String userTeam;
 
     @JsonIgnore
     @OneToMany(mappedBy = "gameMatch", cascade = CascadeType.ALL)

@@ -1,7 +1,6 @@
 import React from "react"
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -31,16 +30,16 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ko">
+      <html lang="ko">
       <body className={`font-sans antialiased`}>
-        {children}
-        <Analytics />
+      {children}
+      {/* 2. 아래에 있던 <Analytics /> 태그를 지우세요. */}
       </body>
-    </html>
+      </html>
   )
 }
