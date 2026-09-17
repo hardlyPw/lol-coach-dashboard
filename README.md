@@ -42,11 +42,11 @@ flowchart LR
 
 ## Results
 
-실제 프로게이머와 코치가 인터뷰 과정에서 사용했습니다. ZIP/CSV 입력부터 DB·API·연동 UI까지 직접 구현해 경기와 발화를 함께 탐색하는 화면을 제공했습니다. 이번 문서 정리에서 전체 실행·지표 정확성 검증은 수행하지 않았으며, 정량 코칭 효과를 주장하지 않습니다.
+실제 프로게이머와 코치가 인터뷰 과정에서 사용했습니다. ZIP/CSV 입력부터 DB·API·연동 UI까지 직접 구현해 경기와 발화를 함께 탐색하는 화면을 제공했습니다. 공개 데모용 합성 데이터와 읽기 전용 모드를 추가하고 로컬 빌드·API 통합 테스트를 수행했습니다. 지표의 통계적 정확성과 정량 코칭 효과를 검증한 것은 아닙니다.
 
 ## Getting Started
 
-Java 17, Node.js, MySQL 설정이 필요합니다. 공개 tree에는 완성된 환경 설정 예제가 없어 아래 실행 명령만으로 재현 완료를 보장하지 않습니다.
+Java 17, Node.js, MySQL 설정이 필요합니다. [합성 데이터 데모 실행 가이드](docs/PUBLIC-DEMO.md)에 환경변수·초기 적재·읽기 전용 설정을 정리했습니다. 운영 MySQL 환경의 검증 상태는 로컬 테스트와 구분합니다.
 
 backend에 외부 환경변수로 `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, `SPRING_DATASOURCE_PASSWORD`를 설정하고 스키마 정책을 확인합니다. 과거 설정 파일을 복원해 사용하지 않습니다.
 
@@ -67,7 +67,13 @@ npm run dev
 
 ## Testing / Evaluation
 
-기존 Spring context 테스트가 존재합니다. 이번 감사에서 실행하지 않았으며 지표 정확성 테스트를 대신하지 않습니다.
+읽기 전용 필터 테스트 8개와 H2 기반 통합 테스트 2개를 통과했습니다. 통합 테스트는 합성 ZIP 적재, 경기 상세, 7개 패턴의 조회, 범위 분석 응답 및 업로드·삭제 거부를 확인합니다. 테스트 실행에는 운영 DB가 필요하지 않습니다.
+
+```sh
+./gradlew test --tests '*DemoReadOnlyFilterTests' --tests '*DemoIntegrationTests'
+```
+
+프런트엔드 빌드와 `npx tsc --noEmit`도 확인했습니다. 운영 MySQL·배포 서버 검증과 계산 지표의 정확성 검증은 별도입니다.
 
 우선 검증할 fixture: 발화 없는 경기, 같은 화자의 연속 발화, 방향이 반대인 edge, 10초 경계의 인접 발화, 짧은 선택 구간.
 

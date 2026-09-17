@@ -12,6 +12,7 @@ import UploadModal from '@/components/upload-modal'
 import NetworkChart from '@/components/network-chart'
 import {useParams, useRouter} from 'next/navigation' // ★ 1. 이 녀석을 꼭 임포트하세요!
 import MatchTabs from '@/components/match-tabs';
+import { API_BASE, DEMO_MODE } from '@/lib/demo';
 // 데이터 타입 정의
 interface NetworkMetric {
     timeIndex: number;
@@ -83,7 +84,7 @@ export default function MatchDetailPage() {
         const fetchGameData = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/matches/${currentMatchId}`);
+                const response = await axios.get(`${API_BASE}/api/matches/${currentMatchId}`);
                 console.log("=== [DEBUG] 백엔드 수신 데이터 ===");
                 console.log("전체 길이(ms):", response.data.duration);
                 console.log("이벤트 개수:", response.data.gameEvents?.length);
@@ -113,7 +114,7 @@ export default function MatchDetailPage() {
         const fetchMetrics = async () => {
             const { s, t } = getPatternParams(selectedPattern);
             try {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/matches/${currentMatchId}/metrics`, {
+                const res = await axios.get(`${API_BASE}/api/matches/${currentMatchId}/metrics`, {
                     params: { sourceDa: s, targetDa: t }
                 });
                 // 시간 인덱스(10초 단위)를 실제 초(sec)로 변환해서 저장
@@ -155,7 +156,7 @@ export default function MatchDetailPage() {
             }
 
             try {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/matches/${currentMatchId}/analysis`, {
+                const res = await axios.get(`${API_BASE}/api/matches/${currentMatchId}/analysis`, {
                     params: {
                         start: startSec,
                         end: endSec,
@@ -308,8 +309,13 @@ export default function MatchDetailPage() {
         // [수정 1] 최상위 div: p-6 제거하고 flex-col 적용 (탭 바를 꽉 채우기 위해)
         <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
 
+            {DEMO_MODE && <aside className="border-b border-blue-900 bg-blue-950 px-6 py-3 text-sm text-blue-100">
+                <strong>포트폴리오 데모</strong> · 가상의 선수·경기·대화로 구성한 합성 데이터입니다.
+                시간 구간과 대화 패턴을 바꾸며 탐색할 수 있습니다. 실제 인터뷰 자료는 포함하지 않습니다.
+            </aside>}
+
             {/* 모달은 위치 상관 없음 */}
-            <UploadModal isOpen={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)} />
+            {!DEMO_MODE && <UploadModal isOpen={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)} />}
 
             {/* [수정 2] 탭 바 배치: 상단에 여백 없이 가로로 꽉 차게 들어감 */}
             <MatchTabs

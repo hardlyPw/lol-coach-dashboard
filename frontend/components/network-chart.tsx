@@ -1,5 +1,7 @@
 "use client";
 
+import { API_BASE } from '@/lib/demo';
+
 import React, { useState, useEffect, useMemo } from 'react';
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine
@@ -70,7 +72,7 @@ export default function NetworkChart({ matchId, timeRange, events = [], selected
 
         const fetchData = async () => {
             try {
-                const res = await axios.get<NetworkMetricData[]>(`${process.env.NEXT_PUBLIC_API_URL}/api/matches/${matchId}/metrics`, {
+                const res = await axios.get<NetworkMetricData[]>(`${API_BASE}/api/matches/${matchId}/metrics`, {
                     params: {
                         sourceDa: currentPattern.source,
                         targetDa: currentPattern.target

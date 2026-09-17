@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Plus, Trash2, X } from 'lucide-react'; // 아이콘 추가
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE, DEMO_MODE } from '@/lib/demo';
 
 interface MatchTabProps {
     currentMatchId: string;
@@ -27,7 +28,7 @@ export default function MatchTabs({ currentMatchId, onUploadClick }: MatchTabPro
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/matches/list`);
+                const res = await axios.get(`${API_BASE}/api/matches/list`);
                 setMatches(res.data);
             } catch (err) {
                 console.error("매치 목록 로딩 실패:", err);
@@ -46,7 +47,7 @@ export default function MatchTabs({ currentMatchId, onUploadClick }: MatchTabPro
     const confirmDelete = async () => {
         if (!deleteTargetId) return;
         try {
-            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/matches/${deleteTargetId}`);
+            await axios.delete(`${API_BASE}/api/matches/${deleteTargetId}`);
             setMatches(matches.filter(m => m.id !== deleteTargetId));
             setIsModalOpen(false);
             setDeleteTargetId(null);
@@ -74,13 +75,13 @@ export default function MatchTabs({ currentMatchId, onUploadClick }: MatchTabPro
         <div className="w-full bg-slate-950 border-b border-slate-800 flex items-center px-2 h-12 overflow-x-auto scrollbar-hide relative">
 
             {/* 새 분석 버튼 */}
-            <button
+            {!DEMO_MODE && <button
                 onClick={onUploadClick}
                 className="flex items-center gap-2 px-3 py-1.5 mr-2 text-xs font-bold text-slate-300 bg-slate-800 hover:bg-blue-600 hover:text-white rounded-md transition-all shrink-0"
             >
                 <Plus size={14} />
                 <span>새 분석</span>
-            </button>
+            </button>}
 
             {/* 매치 탭 리스트 */}
             <div className="flex items-center gap-1 h-full">
@@ -108,12 +109,12 @@ export default function MatchTabs({ currentMatchId, onUploadClick }: MatchTabPro
                             </button>
 
                             {/* 2. 삭제 버튼 (오른쪽 끝, 호버 시 강조) */}
-                            <button
+                            {!DEMO_MODE && <button
                                 onClick={(e) => openDeleteModal(e, match.id)}
                                 className="px-2 text-slate-600 hover:text-red-500 transition-colors z-10"
                             >
                                 <Trash2 size={14} />
-                            </button>
+                            </button>}
                         </div>
                     );
                 })}
