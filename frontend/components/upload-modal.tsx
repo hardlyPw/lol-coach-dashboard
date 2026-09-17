@@ -1,5 +1,7 @@
 "use client";
 
+import { API_BASE } from '@/lib/demo';
+
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -31,7 +33,7 @@ export default function UploadModal({ isOpen, onClose }: { isOpen: boolean; onCl
 
         try {
             // 백엔드 엔드포인트 주소는 기존과 동일하게 유지하거나 필요시 수정하세요.
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/matches/import`, formData, {
+            const response = await axios.post(`${API_BASE}/api/matches/import`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
