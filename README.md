@@ -2,11 +2,13 @@
 
 경기·발화/Dialogue Act 결과 CSV를 시간축과 네트워크 지표로 탐색하는 코칭 대시보드.
 
-> 문서 검토본. 입력 데이터 공개 권한과 지표 정의를 확인한 뒤 게시합니다.
+**대시보드 전체 개발 · 실제 프로게이머와 코치의 인터뷰에서 활용**
+
+개발 커밋: 2026년 2월. 재현용 자료는 [새로 작성한 합성 예제](examples/synthetic-match.zip)를 제공합니다.
 
 ## Why
 
-따로 저장된 경기 이벤트와 발화 기록을 하나의 시간축으로 연결해, 특정 구간의 상호작용을 살펴보기 위한 도구입니다. 실제 코칭 효과는 [NEEDS VERIFICATION]입니다.
+따로 저장된 경기 이벤트와 발화 기록을 하나의 시간축으로 연결해, 특정 구간의 상호작용을 살펴보기 위한 도구입니다. 경기력 개선을 측정하는 도구로 검증한 것은 아니며, 인터뷰에서 데이터를 탐색하는 데 사용했습니다.
 
 ## What it does
 
@@ -16,7 +18,7 @@
 
 ## My Contribution
 
-대시보드 전체를 직접 개발했습니다. ZIP/CSV 적재·DB 저장, 시간 구간·발화 패턴별 지표 API와 Next.js 분석 화면을 연결했습니다(2026-09-15 본인 확인 및 커밋 대조). 인터뷰 연구 전체와 외부 ASR/DA 모델의 담당 범위는 별도입니다.
+대시보드 전체를 직접 개발했습니다. ZIP/CSV 적재·DB 저장, 시간 구간·발화 패턴별 지표 API와 Next.js 분석 화면을 연결했습니다. 인터뷰 연구 전체와 외부 ASR/DA 모델의 담당 범위는 별도입니다.
 
 ## Architecture
 
@@ -32,15 +34,15 @@ flowchart LR
 
 ## Key Technical Decisions
 
-- [MatchService](src/main/java/com/lolcoaching/backend/service/MatchService.java)는 여러 파일을 경기 단위로 묶어 적재합니다. 입력 규격과 오류 복구 조건은 추가 문서화가 필요합니다.
+- [MatchService](src/main/java/com/lolcoaching/backend/service/MatchService.java)는 여러 파일을 경기 단위로 묶어 적재합니다. [입력 파일·열 순서·행 오류 처리](docs/INPUT-FORMAT.md)를 문서화했습니다.
 - [NetworkMetricService](src/main/java/com/lolcoaching/backend/service/NetworkMetricService.java)는 10초 구간 지표와 선택 시간 범위 계산을 구분합니다.
 - [분석 화면](frontend/app/matches/%5Bid%5D/page.tsx)은 범위 요청에 300ms debounce를 적용합니다. 측정된 성능 향상률을 뜻하지 않습니다.
 
-선택 이유와 대안 검토 중 코드에 없는 부분은 [NEEDS VERIFICATION]입니다.
+위 설명은 구현의 동작과 기술적 제약을 정리한 것입니다.
 
 ## Results
 
-실제 프로게이머와 코치가 인터뷰 과정에서 사용했습니다(2026-09-15 본인 확인). ZIP/CSV 입력부터 DB·API·연동 UI까지 직접 구현했습니다. 참여 인원·피드백 원문·정량 코칭 효과는 미확인이고, 이번 감사에서 전체 실행·지표 정확성 검증은 수행하지 않았습니다.
+실제 프로게이머와 코치가 인터뷰 과정에서 사용했습니다. ZIP/CSV 입력부터 DB·API·연동 UI까지 직접 구현해 경기와 발화를 함께 탐색하는 화면을 제공했습니다. 이번 문서 정리에서 전체 실행·지표 정확성 검증은 수행하지 않았으며, 정량 코칭 효과를 주장하지 않습니다.
 
 ## Getting Started
 
@@ -61,7 +63,7 @@ npm ci
 npm run dev
 ```
 
-데모 입력은 승인된 합성 자료로 준비합니다. 데이터 스키마·필수 파일·샘플 ZIP은 [NEEDS VERIFICATION]입니다.
+데모 입력은 [합성 ZIP](examples/synthetic-match.zip)을 사용합니다. [입력 형식과 업로드 예시](docs/INPUT-FORMAT.md)에서 필수 파일·열 순서·시간 단위·파싱 한계를 확인할 수 있습니다. 실제 경기·발화 원문을 추가로 공개하지 않습니다.
 
 ## Testing / Evaluation
 
@@ -73,10 +75,10 @@ npm run dev
 
 - 현재 방향성 edge의 unique 수를 분모 10으로 나누며 range API만 1.0 상한 적용. 지표 정의를 확정하기 전 표준 밀도로 단정하지 않습니다.
 - 범위 분석은 경기 전체 로그를 조회한 뒤 필터링합니다. 대규모 데이터 성능은 미검증입니다.
-- 배포 URL·현재 가용성, 데이터 공개 허용 범위, 실제 사용 결과는 미확인입니다.
+- 인터뷰 활용 사실과 현재 운영 상태는 구분합니다. 실제 원자료의 공개 허용 범위와 배포 가용성은 별도 확인 대상입니다.
 - `node_modules`가 tracked tree에 포함되어 있습니다. 원본은 그대로 보존했으며 정리는 별도 작업입니다.
 
 ## Links
 
 - [Source](https://github.com/hardlyPw/lol-coach-dashboard)
-- Portfolio / Demo / Paper: [NEEDS VERIFICATION]
+- [입력 명세·합성 예제](docs/INPUT-FORMAT.md)
