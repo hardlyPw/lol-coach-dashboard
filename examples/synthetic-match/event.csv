@@ -1,0 +1,3 @@
+event,time_ms,killer_id,victim_id
+CHAMPION_KILL,6000,1-demo,6-demo
+CHAMPION_KILL,15000,7-demo,2-demo
